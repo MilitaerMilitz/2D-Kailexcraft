@@ -7,7 +7,7 @@ import java.util.TimerTask;
  * Represents an Object with Timer.
  *
  * @author Alexander Ley
- * @version 1.5
+ * @version 1.5.1
  */
 public abstract class Tickable {
 
@@ -84,7 +84,7 @@ public abstract class Tickable {
             task = new TimerTask() {
                 @Override
                 public void run() {
-                    tick();
+                    checkTick();
                 }
             };
             isReady = true;

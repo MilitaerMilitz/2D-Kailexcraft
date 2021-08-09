@@ -4,7 +4,7 @@ package com.github.kailex.api.util;
  * Service Class for Integers, Doubles, etc...
  *
  * @author Alexander Ley
- * @version 1.2
+ * @version 1.2.1
  */
 public class NumberUtil {
 

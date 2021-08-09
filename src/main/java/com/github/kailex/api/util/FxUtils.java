@@ -20,11 +20,9 @@ import java.util.logging.Logger;
  * This class offers help methods for JavaFx things.
  *
  * @author Alexander Ley
- * @version 1.5
+ * @version 1.0
  */
 public class FxUtils {
-
-    private static Logger LOGGER = LoggerUtil.getLogger("FxUtils");
 
     /**
      * This Method changes the scene. If next scene can't load the stage will be closed.
@@ -53,7 +51,7 @@ public class FxUtils {
         }
         catch (Exception ex) {
             if (!ignoreException) {
-                LOGGER.log(Level.SEVERE, "Can't load: " + fxmlFile, ex);
+                LoggerUtil.getLogger("FxUtils").log(Level.SEVERE, "Can't load: " + fxmlFile, ex);
                 LoggerUtil.showError("Die nächste Szene konnte nicht geladen werden.");
                 stage.close();
             }
