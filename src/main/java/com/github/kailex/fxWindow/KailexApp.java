@@ -22,7 +22,7 @@ public class KailexApp extends Application {
 
         //loadImages();
 
-        changeScene("/FXML/example.fxml", "Beispiel", 600, 400, false);
+        changeScene("/FXML/loadingScreen.fxml", "Beispiel", 856, 482, false);
 
         stage.show();
 

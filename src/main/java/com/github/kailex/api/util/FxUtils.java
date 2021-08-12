@@ -27,7 +27,7 @@ public class FxUtils {
     /**
      * This Method changes the scene. If next scene can't load the stage will be closed.
      * @param stage stage where the scene have to changed.
-     * @param fxmlFile .fxml file for loading (e.g. "/FXML/example.fxml").
+     * @param fxmlFile .fxml file for loading (e.g. "/FXML/loadingScreen.fxml").
      * @param title Title of the window.
      * @param width Width of the window.
      * @param height Height of the window.
