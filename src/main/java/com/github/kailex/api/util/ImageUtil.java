@@ -71,7 +71,10 @@ public class ImageUtil {
 
         images.forEach(image -> gc.drawImage(image, 0, 0, width, height));
 
-        return canvas.snapshot(null, new WritableImage(width, height));
+        SnapshotParameters snap = new SnapshotParameters();
+        snap.setFill(Color.color(1, 1, 1, 0));
+
+        return canvas.snapshot(snap, new WritableImage(width, height));
     }
 
     /**
@@ -138,5 +141,17 @@ public class ImageUtil {
      */
     public static Image rotateImage(Image img, double degrees){
         return rotateImage(img, degrees, (int) img.getWidth(), (int) img.getHeight(), (int) img.getWidth(), (int) img.getHeight());
+    }
+
+    public static Image getImageSnippet(Image img, int uvx, int uvy, int width, int height){
+        Canvas canvas = new Canvas(width, height);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        gc.drawImage(img, uvx, uvy, width, height, 0, 0, width, height);
+
+        SnapshotParameters snap = new SnapshotParameters();
+        snap.setFill(Color.color(1, 1, 1, 0));
+
+        return canvas.snapshot(snap, new WritableImage(width, height));
     }
 }
