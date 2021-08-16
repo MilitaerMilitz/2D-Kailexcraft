@@ -15,6 +15,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
+/**
+ * This class manages loading screen and manage incoming data.
+ *
+ * @author Kai Sturm
+ * @version 1.1
+ */
 public class LoadingScreenController implements IController<LoadingScreenController>, Initializable {
     @FXML private ProgressBar prgbar;
     @FXML private Label lbl_prgbar;
