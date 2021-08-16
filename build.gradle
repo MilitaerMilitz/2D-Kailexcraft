@@ -1,8 +1,8 @@
 plugins {
     id 'java'
     id 'application'
+    id "io.franzbecker.gradle-lombok" version "4.0.0"
     id 'org.openjfx.javafxplugin' version '0.0.9'
-
 }
 
 group 'org.example'
@@ -20,12 +20,16 @@ repositories {
 dependencies {
     //Gson
     implementation 'com.google.code.gson:gson:2.8.7'
+
+    //Lombok @Setter and @Getter
+    implementation 'org.projectlombok:lombok:1.18.20'
+
+    //Nullable Annotation
     implementation 'org.jetbrains:annotations:21.0.1'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 }
-
 
 jar {
     manifest {
