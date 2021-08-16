@@ -31,7 +31,7 @@ import java.util.zip.ZipInputStream;
  * This class offers basic method to operate with files.
  *
  * @author Alexander Ley
- * @version 2.0
+ * @version 2.0.1
  */
 public class FileUtil {
     public static final Logger LOGGER = LoggerUtil.getLogger("FileUtil");
@@ -135,7 +135,7 @@ public class FileUtil {
         }
 
         if (destination.toFile().isDirectory()) throw new IllegalArgumentException(destination + " is not file.");
-        if (destination.toFile().exists() && Files.size(destination) != 0) throw new IllegalArgumentException(destination + " is not empty.");
+        if (destination.toFile().exists() && !FileUtil.isPathEmpty(destination)) throw new IllegalArgumentException(destination + " is not empty.");
         if (!destination.toFile().exists()) Files.createFile(destination);
 
         final ReadableByteChannel readableByteChannel = Channels.newChannel(url.openStream());
