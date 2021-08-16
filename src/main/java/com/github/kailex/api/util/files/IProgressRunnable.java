@@ -2,6 +2,9 @@ package com.github.kailex.api.util.files;
 
 /**
  * This interface marks all monitoring FileSystem actions and makes them monitorable.
+ *
+ * @author Alexander Ley
+ * @version 1.0
  */
 public interface IProgressRunnable extends Runnable{
     /**
