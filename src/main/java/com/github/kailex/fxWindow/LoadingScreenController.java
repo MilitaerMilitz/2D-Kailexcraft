@@ -23,7 +23,7 @@ public class LoadingScreenController implements IController<LoadingScreenControl
 
     @Override
     public LoadingScreenController getInstance() {
-        return null;
+        return this;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class LoadingScreenController implements IController<LoadingScreenControl
         } catch (IOException e) {
             LoggerUtil.getLogger("LoadingScreenController").log(Level.WARNING, "Can't load title picture");
         }
-        setData("Downloading asssets", -10);
+        setData("Starting Game", -10);
     }
 
     public void setData(String text, int progress){
