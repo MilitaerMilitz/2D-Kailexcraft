@@ -31,7 +31,7 @@ import java.util.zip.ZipInputStream;
  * This class offers basic method to operate with files.
  *
  * @author Alexander Ley
- * @version 2.0.1
+ * @version 2.1
  */
 public class FileUtil {
     public static final Logger LOGGER = LoggerUtil.getLogger("FileUtil");
@@ -42,20 +42,28 @@ public class FileUtil {
     public static final Gson GSON = new Gson();
 
     /**
+     * Checks if httpUrl is correct.
+     */
+    public static boolean isUrlValid(String httpUrl){
+        try {
+            new URL(httpUrl);
+            return true;
+        }
+        catch (MalformedURLException ex){
+            return false;
+        }
+    }
+
+    /**
      * If name cannot found behind link this method will generate a new unique name.
      * @param httpUrl direct downloadlink
      * @return Returns name of file behind direct downloadlink.
      * @throws IOException if an I/O error occurs or the temporary-file directory does not exist.
      */
     public static String getNameOfInternetFile(@NotNull String httpUrl) throws IOException {
-        final URL url;
-        try {
-            url = new URL(httpUrl);
-        }
-        catch (MalformedURLException ex){
-            LOGGER.log(Level.WARNING, httpUrl + " is not valid.", ex);
-            throw new IllegalArgumentException(httpUrl + " is not valid.");
-        }
+        if (!isUrlValid(httpUrl)) throw new IllegalArgumentException(httpUrl + " is not valid.");
+
+        final URL url = new URL(httpUrl);
 
         //open connection
         URLConnection con;
@@ -88,12 +96,15 @@ public class FileUtil {
      * @return Returns size of file behind downloadlink and -1 if size cannot be calculated.
      */
     public static long getSizeOfInternetFile(String httpUrl) {
+        if (!isUrlValid(httpUrl)) throw new IllegalArgumentException(httpUrl + " is not valid.");
+
         final URL url;
         try {
             url = new URL(httpUrl);
         }
-        catch (MalformedURLException ex){
-            LOGGER.log(Level.WARNING, httpUrl + " is not valid.", ex);
+        catch (MalformedURLException e) {
+            //Should not reachable.
+            assert false;
             throw new IllegalArgumentException(httpUrl + " is not valid.");
         }
 
@@ -125,14 +136,9 @@ public class FileUtil {
      * @throws IOException If an I/O error occurs.
      */
     public static void downloadFile(Path destination, String httpUrl) throws IOException {
-        final URL url;
-        try {
-            url = new URL(httpUrl);
-        }
-        catch (MalformedURLException ex){
-            LOGGER.log(Level.WARNING, httpUrl + " is not valid.", ex);
-            throw new IllegalArgumentException(httpUrl + " is not valid.");
-        }
+        if (!isUrlValid(httpUrl)) throw new IllegalArgumentException(httpUrl + " is not valid.");
+
+        final URL url = new URL(httpUrl);
 
         if (destination.toFile().isDirectory()) throw new IllegalArgumentException(destination + " is not file.");
         if (destination.toFile().exists() && !FileUtil.isPathEmpty(destination)) throw new IllegalArgumentException(destination + " is not empty.");
