@@ -7,11 +7,11 @@ import java.util.logging.Logger;
  * This class offers basic methods to use java API Logger.
  *
  * @author Alexander Ley
- * @version 1.0
+ * @version 1.1
  */
 public final class LoggerUtil {
     public static Logger getLogger(Class<?> clazz){
-        return Logger.getLogger(clazz.getName());
+        return Logger.getLogger(clazz.getSimpleName());
     }
 
     public static Logger getLogger(String name){
