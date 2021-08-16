@@ -1,6 +1,7 @@
 package com.github.kailex.api.resourcepack;
 
 /**
+ * This class is not implemented yet.
  * This class handles all textures used by application.
  *
  * @author Alexander Ley
@@ -8,5 +9,4 @@ package com.github.kailex.api.resourcepack;
  */
 public class TextureManager {
 
-    public static final String ASSETS_URL = "https://github.com/InventivetalentDev/minecraft-assets/zipball/refs/heads/1.17.1";
 }
