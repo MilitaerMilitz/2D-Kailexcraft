@@ -261,6 +261,10 @@ public class ResourcepackManager {
         }
     }
 
+    /**
+     * Checks periodically progress of monitorable action and put it with message into loading screen.
+     * @return Returns CountDownLatch marking if actions is ready.
+     */
     public static CountDownLatch monitorAction(IProgressRunnable runnable, String msg){
         if (actionMonitor != null){
             actionMonitor.forceStop();
