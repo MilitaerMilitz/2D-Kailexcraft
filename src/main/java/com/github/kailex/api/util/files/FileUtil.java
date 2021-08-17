@@ -469,7 +469,7 @@ public class FileUtil {
      * @throws IOException if an I/O error occurs by deleting old file.
      */
     public static <T> void saveToJson(Path path, T obj) throws IOException {
-        if (!path.toFile().isFile()) throw new IllegalArgumentException(path + " is not a file.");
+        if (path.toFile().exists() && !path.toFile().isFile()) throw new IllegalArgumentException(path + " is not a file.");
         if (path.toFile().exists()) Files.delete(path);
 
         final String json = GSON.toJson(obj);
@@ -481,7 +481,7 @@ public class FileUtil {
      * @throws IOException if an I/O error occurs by deleting old file.
      */
     public static <T> void saveToJson(Path path, T obj, TypeToken<T> token) throws IOException {
-        if (!path.toFile().isFile()) throw new IllegalArgumentException(path + " is not a file.");
+        if (path.toFile().exists() && !path.toFile().isFile()) throw new IllegalArgumentException(path + " is not a file.");
         if (path.toFile().exists()) Files.delete(path);
 
         final String json = GSON.toJson(obj, token.getType());
