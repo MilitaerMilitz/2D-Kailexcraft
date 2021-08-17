@@ -1,6 +1,7 @@
 package com.github.kailex.api.util;
 
 import com.github.kailex.fxWindow.KailexApp;
+import javafx.animation.FadeTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
@@ -139,5 +141,21 @@ public class FxUtils {
         };
         sleeper.setOnSucceeded(event -> action.accept(null));
         new Thread(sleeper).start();
+    }
+
+    /**
+     * Fades node using transparency of node.
+     * @param time time in milliseconds.
+     * @param from start transparency between 0 and 1
+     * @param to end transparency between 0 and 1
+     */
+    public static void fadeNode(Node node, double time, double from, double to){
+        if (time < 0) throw new IllegalArgumentException("Duration cannot be negative.");
+        if (from < 0 || from > 1 || to < 0 || to > 1) throw new IllegalArgumentException(from + " -> " + to + " is not valid.");
+
+        FadeTransition transition = new FadeTransition(Duration.millis(time), node);
+        transition.setFromValue(from);
+        transition.setToValue(to);
+        transition.play();
     }
 }

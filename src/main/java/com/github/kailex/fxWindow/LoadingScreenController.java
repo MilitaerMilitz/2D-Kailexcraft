@@ -1,14 +1,18 @@
 package com.github.kailex.fxWindow;
 
+import com.github.kailex.api.util.FxUtils;
 import com.github.kailex.api.util.IController;
 import com.github.kailex.api.util.ImageUtil;
 import com.github.kailex.api.util.LoggerUtil;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +39,11 @@ public class LoadingScreenController implements IController<LoadingScreenControl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            FxUtils.fadeNode(prgbar, 4000, 0.0, 1.0);
+            FxUtils.fadeNode(lbl_prgbar, 4000, 0.0, 1.0);
+            FxUtils.fadeNode(imv_upper, 4000, 0.0, 1.0);
+            FxUtils.fadeNode(imv_lower, 4000, 0.0, 1.0);
+
             Image img = ImageUtil.loadImage("images/mojangstudios.png");
             int halfImageHeight = (int)(img.getHeight()/2);
             Image upperImage = ImageUtil.getImageSnippet(img, 0, 0, (int)img.getWidth(), halfImageHeight);
